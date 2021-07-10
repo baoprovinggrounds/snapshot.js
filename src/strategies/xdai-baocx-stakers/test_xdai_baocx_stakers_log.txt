@@ -1,0 +1,94 @@
+npm run test --strategy=xdai-baocx-stakers
+
+> @snapshot-labs/snapshot.js@0.1.11 pretest
+> npm run build:cjs
+
+
+> @snapshot-labs/snapshot.js@0.1.11 build:cjs
+> rollup -c rollup.cjs.config.js
+
+
+src/index.ts → dist/snapshot.cjs.js...
+(!) Entry module "src\index.ts" is implicitly using "default" export mode, which means for CommonJS output that its default export is assigned to "module.exports". For many tools, such CommonJS output will not be interchangeable with the original ES module. If this is intended, explicitly set "output.exports" to either "auto" or "default", otherwise you might want to consider changing the signature of "src\index.ts" to use named exports only.
+https://rollupjs.org/guide/en/#outputexports
+src\index.ts
+(!) Circular dependencies
+src\utils.ts -> src\strategies\index.ts -> src\strategies\balancer\index.ts -> src\utils.ts
+src\utils.ts -> src\strategies\index.ts -> src\strategies\contract-call\index.ts -> src\utils.ts
+src\utils.ts -> src\strategies\index.ts -> src\strategies\ens-domains-owned\index.ts -> src\utils.ts
+...and 80 more
+(!) Unresolved dependencies
+https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency
+@ethersproject/bignumber/lib/bignumber (imported by src\plugins\safeSnap\index.ts)
+@ethersproject/constants (imported by src\plugins\safeSnap\index.ts)
+created dist/snapshot.cjs.js in 19.7s
+
+> @snapshot-labs/snapshot.js@0.1.11 test
+> jest test/index.spec.ts --runInBand
+
+  console.log
+    getScoresDirect
+
+      at Object.call (dist/snapshot.cjs.js:9978:29)
+
+  console.log
+    [
+      {
+        '0x3bc3c8af8cfe3dfc9ba1a57c7c3b653e3f6d6951': 332409.0224448833,
+        '0x609991ca0ae39bc4eaf2669976237296d40c2f31': 0,
+        '0xb9ab9578a34a05c86124c399735fdE44dEc80E7F': 1771856.5264543237,
+        '0x02a73cd5c9135b68798838407a136b41ddea3c5e': 124539.51372999592
+      }
+    ]
+
+      at Object.<anonymous> (test/index.spec.ts:46:13)
+
+  console.log
+    Resolved in 3.11 sec.
+
+      at Object.<anonymous> (test/index.spec.ts:47:13)
+
+  console.log
+    getScoresDirect
+
+      at Object.call (dist/snapshot.cjs.js:9978:29)
+
+  console.log
+    Scores with latest snapshot [
+      {
+        '0x3bc3c8af8cfe3dfc9ba1a57c7c3b653e3f6d6951': 332409.0224448833,
+        '0x609991ca0ae39bc4eaf2669976237296d40c2f31': 0,
+        '0xb9ab9578a34a05c86124c399735fdE44dEc80E7F': 1771856.5264543237,
+        '0x02a73cd5c9135b68798838407a136b41ddea3c5e': 105579.86015519749
+      }
+    ]
+
+      at Object.<anonymous> (test/index.spec.ts:96:13)
+
+  console.log
+    Resolved in 0.57 sec.
+
+      at Object.<anonymous> (test/index.spec.ts:97:13)
+
+ PASS  test/index.spec.ts (7.969 s)
+
+Test strategy "xdai-baocx-stakers"
+    √ Strategy should run without any errors (3141 ms)
+    √ Should return an array of object with addresses (17 ms)
+    √ Should take less than 10 sec. to resolve (4 ms)
+    √ File examples.json should include at least 1 address with a positive score (3 ms)
+    √ File examples.json must use a snapshot block number in the past (1053 ms)
+
+Test strategy "xdai-baocx-stakers" with latest snapshot
+    √ Strategy should run without any errors (705 ms)
+    √ Should return an array of object with addresses (13 ms)
+
+Test strategy "xdai-baocx-stakers" (with 500 addresses)
+    ○ skipped Should work with 500 addresses
+    ○ skipped Should take less than 15 sec. to resolve with 500 addresses
+
+Test Suites: 1 passed, 1 total
+Tests:       2 skipped, 7 passed, 9 total
+Snapshots:   0 total
+Time:        9.735 s, estimated 12 s
+Ran all test suites matching /test\\index.spec.ts/i.
