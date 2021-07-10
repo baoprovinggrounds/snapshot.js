@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Baocx and Bao token stakers and holders on xDai",
+    "strategy": {
+      "name": "xdai-baocx-stakers-and-holders"
+    },
+    "network": "1",
+    "addresses": [
+      "0x3bc3c8af8cfe3dfc9ba1a57c7c3b653e3f6d6951",
+      "0x609991ca0ae39bc4eaf2669976237296d40c2f31",
+      "0xb9ab9578a34a05c86124c399735fdE44dEc80E7F",
+      "0x02a73cd5c9135b68798838407a136b41ddea3c5e"
+    ],
+    "snapshot": 12140940
+  }
+]

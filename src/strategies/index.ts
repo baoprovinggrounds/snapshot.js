@@ -108,6 +108,10 @@ import { strategy as aaveGovernancePower } from './aave-governance-power';
 import { strategy as cake } from './cake';
 import { strategy as planetFinance } from './planet-finance';
 import { strategy as impossibleFinance } from './impossible-finance';
+import { strategy as xdaiBaocxHolders } from './xdai-baocx-holders';
+import { strategy as xdaiLockedBaocxHolders } from './xdai-locked-baocx-holders';
+import { strategy as xdaiBaoHolders } from './xdai-bao-holders';
+import { strategy as xdaiBaocxStakers } from './xdai-baocx-stakers';
 
 export default {
   balancer,
@@ -219,5 +223,9 @@ export default {
   'aave-governance-power': aaveGovernancePower,
   cake,
   'planet-finance': planetFinance,
-  'impossible-finance': impossibleFinance
+  'impossible-finance': impossibleFinance,
+  'xdai-baocx-holders': xdaiBaocxHolders,
+  'xdai-locked-baocx-holders': xdaiLockedBaocxHolders,
+  'xdai-bao-holders': xdaiBaoHolders,
+  'xdai-baocx-stakers': xdaiBaocxStakers
 };
